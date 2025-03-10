@@ -1,6 +1,18 @@
-export class ProductData{
-    private readonly ID :string
-    private readonly name :string
-    private readonly value :number
-    private readonly tag? :string[]
+export class ProductData {
+  id: string;
+  name: string;
+  value: number;
+  tag: string[];
+}
+export class ProductDataUpdate {
+  id: string;
+  name?: string;
+  value?: number;
+  tag?: string[];
+}
+export class ProductDataAdd {
+  id: string;
+  name: string;
+  value: number;
+  tag?: string[];
 }

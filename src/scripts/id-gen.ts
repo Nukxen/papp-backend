@@ -1,9 +1,9 @@
 export class Code {
   private type: string;
   private length: number;
-  constructor(type: string, lengthCode: number) {
-    this.type = type[0];
-    this.length = lengthCode;
+  constructor() {
+    this.type = 'a';
+    this.length = 30;
   }
 
   getID() {
@@ -18,32 +18,46 @@ export class Code {
       case 'a':
         return this.genAll();
         break;
+      case 'UUID':
+        return this.genUUID();
+        break;
     }
   }
-  genNumber() {
+  genUUID() {
     let result: string = '';
-    for (let i = 0; i < this.length; i++) {
-      if (i % 4 == 0 && i != 0 && this.length - i > 5) {
-        result += '-';
+    for (let i = 0; i < 34; i++) {
+      //console.log('I:', i);
+      switch (i) {
+        case 8:
+        case 13:
+        case 18:
+        case 23:
+          console.log('Add "-"');
+          result += '-';
+          break;
+        default:
+          console.log;
+          if (Math.random() < 0.5) {
+            result += this.genString();
+          } else {
+            result += this.genNumber();
+          }
+          break;
       }
-      result += Math.floor(Math.random() * 10);
     }
+    return result;
+  }
+  genNumber() {
+    let result = Math.floor(Math.random() * 10);
     return result;
   }
   genString() {
     let apb = 'abcdefghijklmnopqrstuvwxyz';
-    let result: string = '';
-    for (let i = 0; i < this.length; i++) {
-      if (i % 4 == 0 && i != 0 && this.length - i > 5) {
-        result += '-';
-      }
-      let char =
-        Math.random() < 0.5
-          ? apb[Math.floor(Math.random() * apb.length)].toUpperCase()
-          : apb[Math.floor(Math.random() * apb.length)];
-      result += char;
-    }
-    return result;
+    let char =
+      Math.random() < 0.5
+        ? apb[Math.floor(Math.random() * apb.length)].toUpperCase()
+        : apb[Math.floor(Math.random() * apb.length)];
+    return char;
   }
   genAll() {
     let apb = 'abcdefghijklmnopqrstuvwxyz';

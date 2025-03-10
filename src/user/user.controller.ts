@@ -6,7 +6,7 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get('/teste')
-  RotaTeste() {
-    return this.userService.teste;
+  getData(){
+    
   }
 }
